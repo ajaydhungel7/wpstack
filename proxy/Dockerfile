@@ -1,6 +1,9 @@
-FROM nginx:alpine
+FROM ubuntu:latest
 
-# Remove default config and add our custom one
-RUN rm /etc/nginx/conf.d/default.conf
+RUN apt-get update && \
+     apt install -y nginx
 
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/sites-available/default
+EXPOSE 8080
+
+CMD ["nginx", "-g", "daemon off;"]
