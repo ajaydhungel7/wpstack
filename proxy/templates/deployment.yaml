@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: dhungelajay324/nginx:v2
+          image: dhungelajay324/nginx:v3
           ports:
             - containerPort: 80
 
