@@ -1,32 +1,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-proxy
+  name: {{ .Values.name }}
+  labels:
+    app: {{ .Values.name }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: nginx-proxy
+      app: {{ .Values.name }}
   template:
     metadata:
       labels:
-        app: nginx-proxy
+        app: {{ .Values.name }}
     spec:
       containers:
         - name: nginx
-          image: dhungelajay324/nginx:v3
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           ports:
-            - containerPort: 80
+            - containerPort: {{ .Values.containerPort }}
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-proxy
+  name: {{ .Values.name }}
+  labels:
+    app: {{ .Values.name }}
 spec:
   selector:
-    app: nginx-proxy
+    app: {{ .Values.name }}
   ports:
-    - port: 80
-      targetPort: 80
-  type: NodePort
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.containerPort }}
+  type: {{ .Values.service.type }}
