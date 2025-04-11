@@ -1,7 +1,6 @@
 wp:
   name: wpapp
   labels:
-    id: c0924651
     app: wp
     env: dev
     stack: wordpress
