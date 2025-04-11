@@ -4,7 +4,6 @@ wp:
     app: wp
     env: dev
     stack: wordpress
-    id: C0924651
     
   image:
     repository: wordpress
